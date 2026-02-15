@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fisayo Orekoya — Strategic Operations</title>
+    <meta name="description" content="Executive assistant and operations professional based in Lagos, Nigeria. Strategic calendar management, process documentation, and stakeholder communication.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & VARIABLES ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-cream: #FAF8F4;
+            --color-warm-white: #F3EFE8;
+            --color-sage: #D6DDD2;
+            --color-warm-grey: #E4E0D9;
+            --color-dark: #1A1A1A;
+            --color-dark-soft: #2A2A2A;
+            --color-text: #1A1A1A;
+            --color-text-soft: #6B6560;
+            --color-text-light: #FAF8F4;
+            --color-text-light-soft: #B8B3AC;
+            --color-border: #D5D0C8;
+            --color-border-dark: #3A3A3A;
+
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 3rem;
+            --space-xl: 5rem;
+            --space-2xl: 8rem;
+            --space-3xl: 12rem;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 400;
+            color: var(--color-text);
+            background-color: var(--color-cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ========== REVEAL ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background-color: rgba(250, 248, 244, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: var(--color-text-soft);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .nav-contact-btn {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.6rem 1.4rem;
+            border: 1px solid var(--color-text);
+            border-radius: 100px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-contact-btn:hover {
+            background-color: var(--color-text);
+            color: var(--color-cream);
+        }
+
+        /* Mobile menu */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 28px;
+            height: 20px;
+            position: relative;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 1.5px;
+            background-color: var(--color-text);
+            position: absolute;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle span:first-child { top: 0; }
+        .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .nav-toggle span:last-child { bottom: 0; }
+
+        .nav-toggle.active span:first-child {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:last-child {
+            bottom: 50%;
+            transform: translateY(50%) rotate(-45deg);
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .container--narrow {
+            max-width: 800px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            background-color: var(--color-cream);
+            padding: var(--space-3xl) 0 var(--space-2xl);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-soft);
+            margin-bottom: var(--space-lg);
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(2.75rem, 7vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-lg);
+            max-width: 900px;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--color-text-soft);
+            max-width: 540px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .hero-meta-item {
+            font-size: 0.8125rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-meta-label {
+            color: var(--color-text-soft);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.6875rem;
+            font-weight: 500;
+        }
+
+        /* ========== SECTION DIVIDER ========== */
+        .section-divider {
+            padding: var(--space-xl) 0;
+            background-color: var(--color-warm-white);
+        }
+
+        .divider-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+            line-height: 1.4;
+            max-width: 700px;
+            font-style: italic;
+            color: var(--color-text-soft);
+        }
+
+        /* ========== SERVICES ========== */
+        .services {
+            background-color: var(--color-warm-white);
+            padding: var(--space-2xl) 0;
+        }
+
+        .section-label {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-label--light {
+            color: var(--color-text-light-soft);
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-md) var(--space-lg);
+            padding: var(--space-lg) 0;
+            border-top: 1px solid var(--color-border);
+            align-items: start;
+        }
+
+        .service-item:last-child {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .service-number {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--color-text-soft);
+            padding-top: 0.15rem;
+        }
+
+        .service-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-desc {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: var(--color-text-soft);
+            max-width: 540px;
+        }
+
+        /* ========== APPROACHES ========== */
+        .approaches-intro {
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
+            padding: var(--space-2xl) 0;
+        }
+
+        .approaches-intro .section-heading {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-md);
+            max-width: 600px;
+        }
+
+        .approaches-intro .section-desc {
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: var(--color-text-light-soft);
+            max-width: 520px;
+        }
+
+        .approaches-intro-body {
+            max-width: 560px;
+        }
+
+        /* Approach Block */
+        .approach {
+            padding: var(--space-2xl) 0;
+        }
+
+        .approach--sage {
+            background-color: var(--color-sage);
+        }
+
+        .approach--cream {
+            background-color: var(--color-cream);
+        }
+
+        .approach--warm {
+            background-color: var(--color-warm-grey);
+        }
+
+        .approach-header {
+            margin-bottom: var(--space-xl);
+        }
+
+        .approach-eyebrow {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-soft);
+            margin-bottom: var(--space-sm);
+        }
+
+        .approach-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            margin-bottom: var(--space-md);
+        }
+
+        .approach-methodology {
+            font-size: 1.0625rem;
+            line-height: 1.7;
+            color: var(--color-text-soft);
+            max-width: 600px;
+        }
+
+        /* Artifact Card */
+        .artifact {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem 2.25rem;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .approach--cream .artifact {
+            background-color: rgba(243, 239, 232, 0.8);
+        }
+
+        .artifact-label {
+            font-size: 0.625rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-soft);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .artifact-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .artifact-content {
+            font-size: 0.875rem;
+            line-height: 1.75;
+            color: var(--color-text-soft);
+        }
+
+        .artifact-content .artifact-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .artifact-content .artifact-row:last-child {
+            border-bottom: none;
+        }
+
+        .artifact-content .artifact-key {
+            font-weight: 500;
+            color: var(--color-text);
+            font-size: 0.8125rem;
+        }
+
+        .artifact-content .artifact-val {
+            color: var(--color-text-soft);
+            font-size: 0.8125rem;
+        }
+
+        .artifact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .artifact-list li {
+            padding: 0.4rem 0;
+            padding-left: 1rem;
+            position: relative;
+            font-size: 0.8125rem;
+            color: var(--color-text-soft);
+        }
+
+        .artifact-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--color-border);
+        }
+
+        .artifact-section-title {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .artifact-note {
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+            font-size: 0.75rem;
+            font-style: italic;
+            color: var(--color-text-soft);
+        }
+
+        /* ========== AVAILABILITY BANNER ========== */
+        .availability {
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
+            padding: var(--space-2xl) 0;
+            text-align: center;
+        }
+
+        .availability-heading {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.75rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-md);
+        }
+
+        .availability-text {
+            font-size: 1.0625rem;
+            color: var(--color-text-light-soft);
+            max-width: 500px;
+            margin: 0 auto var(--space-lg);
+            line-height: 1.7;
+        }
+
+        .availability-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            padding: 0.8rem 2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .availability-cta:hover {
+            background-color: var(--color-text-light);
+            color: var(--color-dark);
+            border-color: var(--color-text-light);
+        }
+
+        .availability-cta svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .availability-cta:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background-color: var(--color-dark);
+            color: var(--color-text-light);
+            padding: var(--space-lg) 0;
+            border-top: 1px solid var(--color-border-dark);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: var(--color-text-light-soft);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            font-size: 0.8125rem;
+            color: var(--color-text-light-soft);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text-light);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            :root {
+                --space-xl: 3.5rem;
+                --space-2xl: 5rem;
+                --space-3xl: 7rem;
+            }
+
+            .nav { padding: 1rem 1.25rem; }
+
+            .nav-links { display: none; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--color-cream);
+                padding: 1.5rem 2rem 2rem;
+                border-bottom: 1px solid var(--color-border);
+                gap: 1rem;
+            }
+
+            .nav-toggle { display: block; }
+
+            .container { padding: 0 1.25rem; }
+
+            .hero { min-height: auto; padding-top: 8rem; }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .service-item {
+                grid-template-columns: 1fr;
+                gap: var(--space-xs);
+            }
+
+            .service-number {
+                font-size: 0.875rem;
+            }
+
+            .artifact {
+                padding: 1.5rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
+            }
+        }
+
+        /* ========== SELECTION ========== */
+        ::selection {
+            background-color: var(--color-dark);
+            color: var(--color-cream);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-name">Fisayo Orekoya</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#services">Services</a>
+                <a href="#approaches">Approaches</a>
+                <a href="#contact" class="nav-contact-btn">Get in Touch</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-eyebrow reveal">Executive Assistant &amp; Operations</p>
+                <h1 class="hero-tagline reveal reveal-delay-1">
+                    I build the systems that protect executive focus.
+                </h1>
+                <p class="hero-description reveal reveal-delay-2">
+                    Operations professional based in Lagos, Nigeria. I design the infrastructure behind focused leadership: calendar systems, process documentation, and stakeholder communication that hold up under pressure and scale without me.
+                </p>
+                <div class="hero-meta reveal reveal-delay-3">
+                    <div class="hero-meta-item">
+                        <div class="hero-meta-label">Based in</div>
+                        <div>Lagos, Nigeria</div>
+                    </div>
+                    <div class="hero-meta-item">
+                        <div class="hero-meta-label">Time Zones</div>
+                        <div>GMT / CET / ET overlap</div>
+                    </div>
+                    <div class="hero-meta-item">
+                        <div class="hero-meta-label">Status</div>
+                        <div>Open to opportunities</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider Quote -->
+    <section class="section-divider">
+        <div class="container">
+            <p class="divider-text reveal">
+                I understand what breaks if I don't act. So I act before it breaks.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <p class="section-label reveal">What I Do</p>
+
+            <div class="service-item reveal">
+                <span class="service-number">01</span>
+                <div>
+                    <h2 class="service-title">Leadership Time Optimization</h2>
+                    <p class="service-desc">Strategic calendar management, inbox prioritization, and meeting coordination that maximizes executive focus on high-impact activities and strategic decisions.</p>
+                </div>
+            </div>
+
+            <div class="service-item reveal">
+                <span class="service-number">02</span>
+                <div>
+                    <h2 class="service-title">Operational Excellence</h2>
+                    <p class="service-desc">Systems design, process documentation, and workflow optimization that eliminate bottlenecks, reduce errors, and enable consistent execution across teams.</p>
+                </div>
+            </div>
+
+            <div class="service-item reveal">
+                <span class="service-number">03</span>
+                <div>
+                    <h2 class="service-title">Strategic Communication</h2>
+                    <p class="service-desc">Executive presentations, stakeholder correspondence, and data reporting that ensure clarity, alignment, and informed decision-making at every level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approaches Intro -->
+    <section class="approaches-intro" id="approaches">
+        <div class="container">
+            <p class="section-label section-label--light reveal">How I Work</p>
+            <h2 class="section-heading reveal reveal-delay-1">
+                What sets me apart is how I think about work.
+            </h2>
+            <div class="approaches-intro-body reveal reveal-delay-2">
+                <p class="section-desc">
+                    I am strongly opposed to exploitative systems and obfuscation. I do not tolerate vague priorities, unclear ownership, or busywork disguised as productivity.
+                </p>
+                <p class="section-desc" style="margin-top: 1.25rem;">
+                    I like to understand the value of things, the cost of delay, and the risk created by missing or incorrect data. If something matters, I build calm, repeatable systems that protect executive focus, surface what matters early, and turn decisions into delivery.
+                </p>
+                <p class="section-desc" style="margin-top: 1.25rem;">
+                    If you want an assistant who brings rigour, taste, and operational leverage to leadership work, you are in the right place. Here's what that looks like in practice.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach 1: Time Architecture -->
+    <section class="approach approach--sage">
+        <div class="container">
+            <div class="approach-header reveal">
+                <p class="approach-eyebrow">Approach 01</p>
+                <h3 class="approach-title">Time Architecture</h3>
+                <p class="approach-methodology">
+                    I start with a quiet audit. Before restructuring anyone's calendar, I spend the first week mapping how time is currently spent: what gets scheduled, what runs over, what gets cancelled, and what never makes it onto the calendar at all. The goal is to identify where executive attention is being spent versus where it's most needed. From there, I build a system of briefings, buffers, and priority gates that protect deep work without creating bottlenecks.
+                </p>
+            </div>
+
+            <div class="artifact reveal reveal-delay-1">
+                <div class="artifact-label">Sample Deliverable</div>
+                <h4 class="artifact-title">Weekly Executive Briefing</h4>
+                <div class="artifact-content">
+                    <div class="artifact-row">
+                        <span class="artifact-key">Week of</span>
+                        <span class="artifact-val">[Date range]</span>
+                    </div>
+                    <div class="artifact-row">
+                        <span class="artifact-key">Priority meetings</span>
+                        <span class="artifact-val">3 flagged, pre-briefs attached</span>
+                    </div>
+                    <div class="artifact-row">
+                        <span class="artifact-key">Decisions needed</span>
+                        <span class="artifact-val">2 items, context provided</span>
+                    </div>
+                    <div class="artifact-row">
+                        <span class="artifact-key">Delegated</span>
+                        <span class="artifact-val">5 items, owners confirmed</span>
+                    </div>
+                    <div class="artifact-row">
+                        <span class="artifact-key">Focus blocks</span>
+                        <span class="artifact-val">Tues AM, Thurs PM protected</span>
+                    </div>
+
+                    <p class="artifact-note">
+                        Sent every Monday at 08:00. Updated mid-week only if priorities shift. All referenced documents linked, not attached.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach 2: Process Engineering -->
+    <section class="approach approach--cream">
+        <div class="container">
+            <div class="approach-header reveal">
+                <p class="approach-eyebrow">Approach 02</p>
+                <h3 class="approach-title">Process Engineering</h3>
+                <p class="approach-methodology">
+                    Every process I document follows a simple principle: if I disappeared tomorrow, could someone else pick this up and deliver the same result? I document as I go, not after. While I'm learning a workflow, I'm simultaneously building the reference guide for it. This means the ramp-up period doubles as the documentation period. By the time I'm comfortable, there's already a system anyone else could follow.
+                </p>
+            </div>
+
+            <div class="artifact reveal reveal-delay-1">
+                <div class="artifact-label">Sample Deliverable</div>
+                <h4 class="artifact-title">Standard Operating Procedure</h4>
+                <div class="artifact-content">
+                    <p class="artifact-section-title">Trigger</p>
+                    <ul class="artifact-list">
+                        <li>What event initiates this process</li>
+                    </ul>
+
+                    <p class="artifact-section-title">Steps</p>
+                    <ul class="artifact-list">
+                        <li>Each action in sequence, with the tool used</li>
+                        <li>Decision points flagged with if/then logic</li>
+                        <li>Escalation path if something goes wrong</li>
+                    </ul>
+
+                    <p class="artifact-section-title">Output</p>
+                    <ul class="artifact-list">
+                        <li>What "done" looks like, with a quality check</li>
+                        <li>Where the output lives and who gets notified</li>
+                    </ul>
+
+                    <p class="artifact-section-title">Owner &amp; Review Cycle</p>
+                    <ul class="artifact-list">
+                        <li>Named owner, review date, version number</li>
+                    </ul>
+
+                    <p class="artifact-note">
+                        Built in Notion or your preferred tool. Written to be followed, not just filed. Reviewed monthly or after any process failure.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach 3: Stakeholder Clarity -->
+    <section class="approach approach--warm">
+        <div class="container">
+            <div class="approach-header reveal">
+                <p class="approach-eyebrow">Approach 03</p>
+                <h3 class="approach-title">Stakeholder Clarity</h3>
+                <p class="approach-methodology">
+                    Clear communication starts with knowing what decision your audience needs to make. I structure every update around three things: what's done, what's next, and what needs input. No long paragraphs, no unnecessary context. But the real work happens before the update. If I say something is done, the document is already uploaded, correctly named, in the right folder. The update is just confirmation. Nobody should ever need to reply asking "where is it?"
+                </p>
+            </div>
+
+            <div class="artifact reveal reveal-delay-1">
+                <div class="artifact-label">Sample Deliverable</div>
+                <h4 class="artifact-title">End-of-Day Update Format</h4>
+                <div class="artifact-content">
+                    <p class="artifact-section-title">Completed</p>
+                    <ul class="artifact-list">
+                        <li>Meeting minutes uploaded to [shared folder]</li>
+                        <li>Q3 report draft sent to [stakeholder] for review</li>
+                        <li>Travel itinerary confirmed for [dates]</li>
+                    </ul>
+
+                    <p class="artifact-section-title">In Progress</p>
+                    <ul class="artifact-list">
+                        <li>Vendor shortlist, due [date], on track</li>
+                    </ul>
+
+                    <p class="artifact-section-title">Needs Your Input</p>
+                    <ul class="artifact-list">
+                        <li>Budget approval for [item], decision by [date]</li>
+                    </ul>
+
+                    <p class="artifact-note">
+                        Sent daily at end of working day. Blockers flagged in the morning while there's still time to solve them. Surprises at 5pm are worse than no update at all.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Availability / CTA -->
+    <section class="availability" id="contact">
+        <div class="container">
+            <h2 class="availability-heading reveal">
+                Let's work together.
+            </h2>
+            <p class="availability-text reveal reveal-delay-1">
+                Currently open to remote executive assistant and operations roles. Available for US, European, and African time zone overlap.
+            </p>
+            <a href="mailto:fisayoorekoya@gmail.com" class="availability-cta reveal reveal-delay-2">
+                Say Hello
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-copyright">&copy; 2025 Fisayo Orekoya</span>
+                <div class="footer-links">
+                    <a href="mailto:fisayoorekoya@gmail.com">Email</a>
+                    <a href="https://linkedin.com/in/fisayoorekoya" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Nav scroll state
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > 60) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        }, { passive: true });
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+</html>
